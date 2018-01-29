@@ -87,7 +87,6 @@ for layer_name in layer_names:
         print net.params[layer_name][0].data
         print np.sum(arg_params['conv1_weight'].asnumpy() - net.params[layer_name][0].data)
 
-
     elif layer_name == 'bn_conv1':
         print
         print layer_name
@@ -112,7 +111,6 @@ for layer_name in layer_names:
         arg_params['conv1_scale'.split('_scale')[0] + '_bn_beta'][:] = np.array(net.params[layer_name][1].data)
         if np.sum(arg_params['conv1_scale'.split('_scale')[0] + '_bn_beta'].asnumpy() - net.params[layer_name][1].data) != 0:
             print layer_name, ',res beta:', np.sum(arg_params['conv1_scale'.split('_scale')[0] + '_bn_beta'].asnumpy() - net.params[layer_name][1].data)
-
 
     ########## classifier ##########
     elif layer_name == 'fc1000':
@@ -304,7 +302,6 @@ for layer_name in layer_names:
     else:
       print
       print 'no param layer name---------', layer_name
-
 
 model.init_params(arg_params=arg_params, aux_params=aux_params)
 model.save_checkpoint(mx_prefix, 0)
