@@ -75,6 +75,7 @@ for layer_name in layer_names:
     elif 'pool' in layer_name:
         pass
 
+    ########## conv1 ##########
     elif layer_name == 'conv1':
         print layer_name
         arg_params['conv1_weight'] = mx.nd.zeros(net.params[layer_name][0].data.shape)
@@ -112,6 +113,8 @@ for layer_name in layer_names:
         if np.sum(arg_params['conv1_scale'.split('_scale')[0] + '_bn_beta'].asnumpy() - net.params[layer_name][1].data) != 0:
             print layer_name, ',res beta:', np.sum(arg_params['conv1_scale'.split('_scale')[0] + '_bn_beta'].asnumpy() - net.params[layer_name][1].data)
 
+
+    ########## classifier ##########
     elif layer_name == 'fc1000':
         print
         print layer_name
@@ -120,7 +123,7 @@ for layer_name in layer_names:
         arg_params['classifier' + '_bias'] = mx.nd.zeros(net.params[layer_name][1].data.shape)
         arg_params['classifier' + '_bias'][:] = np.array(net.params[layer_name][1].data)
 
-########## res1 ##########
+    ########## res1 ##########
     elif layer_name == 'res2a_branch2a':
         convert_params_conv(layer_name, 'res1_conv1')
 
@@ -139,7 +142,7 @@ for layer_name in layer_names:
     elif layer_name == 'scale2a_branch2b':
         convert_params_scale(layer_name,'res1_conv2_scale')
 
-########## res2 ##########  
+    ########## res2 ##########
     elif layer_name == 'res2b_branch2a':
         convert_params_conv(layer_name, 'res2_conv1')
 
@@ -158,7 +161,7 @@ for layer_name in layer_names:
     elif layer_name == 'scale2b_branch2b':
         convert_params_scale(layer_name,'res2_conv2_scale')
 
-########## res3 ##########  
+    ########## res3 ##########
     elif layer_name == 'res3a_branch2a':
         convert_params_conv(layer_name, 'res3_conv1')
 
@@ -186,7 +189,7 @@ for layer_name in layer_names:
     elif layer_name == 'scale3a_branch1':
         convert_params_scale(layer_name,'res3_match_conv_scale')
 
-########## res4 ##########  
+    ########## res4 ##########
     elif layer_name == 'res3b_branch2a':
         convert_params_conv(layer_name, 'res4_conv1')
 
@@ -204,7 +207,7 @@ for layer_name in layer_names:
 
     elif layer_name == 'scale3b_branch2b':
         convert_params_scale(layer_name,'res4_conv2_scale')
-########## res5 ##########  
+    ########## res5 ##########
     elif layer_name == 'res4a_branch2a':
         convert_params_conv(layer_name, 'res5_conv1')
 
@@ -232,7 +235,7 @@ for layer_name in layer_names:
     elif layer_name == 'scale4a_branch1':
         convert_params_scale(layer_name,'res5_match_conv_scale')
 
-########## res6 ##########  
+    ########## res6 ##########
     elif layer_name == 'res4b_branch2a':
         convert_params_conv(layer_name, 'res6_conv1')
 
@@ -251,7 +254,7 @@ for layer_name in layer_names:
     elif layer_name == 'scale4b_branch2b':
         convert_params_scale(layer_name,'res6_conv2_scale')
 
-########## res7 ##########  
+    ########## res7 ##########
     elif layer_name == 'res5a_branch2a':
         convert_params_conv(layer_name, 'res7_conv1')
 
@@ -279,7 +282,7 @@ for layer_name in layer_names:
     elif layer_name == 'scale5a_branch1':
         convert_params_scale(layer_name,'res7_match_conv_scale')
 
-########## res8 ##########  
+    ########## res8 ##########
     elif layer_name == 'res5b_branch2a':
         convert_params_conv(layer_name, 'res8_conv1')
 
